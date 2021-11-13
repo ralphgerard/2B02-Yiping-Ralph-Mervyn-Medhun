@@ -29,5 +29,4 @@ router.post("/createpost", (req, res) => {
   );
 });
 
-
 module.exports = router;
