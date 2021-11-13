@@ -19,6 +19,7 @@ app.use('/api', ApiRouter);
 
 // TODO: Error Handler
 
+<<<<<<< HEAD
 // Listen to port 8000
 // app.listen(8000, function () {
 //   console.log('App listening on port 8000');
@@ -27,3 +28,9 @@ app.use('/api', ApiRouter);
 app.listen(process.env.PORT || 8000, function () {
   console.log('App listening on port 8000');
 });
+=======
+// Listen to port 
+app.listen(process.env.PORT || 3000, function onListen() {
+  console.log("Listning to port " + process.env.PORT || 3000)
+ });
+>>>>>>> fca84ad5b528f6814ebf6be003c453a14fae543d
