@@ -4,7 +4,8 @@ const connection = new pg.Pool({
   user: "uzlfkabz",
   password: "ikVcW8DJbfrK_FZKQWSEe4wvPv77Jbfl",
   host: "john.db.elephantsql.com",
-  database: "uzlfkabz"
+  database: "uzlfkabz",
+  max: 5
 });
 
 module.exports = connection;
