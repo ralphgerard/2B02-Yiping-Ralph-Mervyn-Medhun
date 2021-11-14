@@ -6,8 +6,8 @@ router.post("/createpost", (req, res) => {
   var post_content = req.body.post_content;
   var userid = req.body.userid;
   const createPostQuery = `
-  INSERT INTO posts(post_title, post_content, userid)
-  VALUES ($1, $2, $3);
+  INSERT INTO posts(post_title, post_content, userid, created_date, last_updated_date)
+  VALUES ($1, $2, $3, NOW() at time zone 'SGT', NOW() at time zone 'SGT');
       `;
 
   connection.query(
@@ -40,6 +40,33 @@ router.delete("/deletepost/:postid", function (req, res, next) {
       console.log(error);
       return next(error);
     });
+});
+
+router.put("/updatePost/:postid", (req, res) => {
+  var postid = req.params.postid;
+  var postTitle = req.body.postTitle;
+  var postContent = req.body.postContent;
+  const updateEmailQuery = `
+  UPDATE posts
+  SET post_title = $1,
+      post_content = $2,
+      last_updated_date = NOW() at time zone 'SGT'
+  WHERE postid = $3;
+      `;
+
+  connection.query(updateEmailQuery, [postTitle, postContent, postid], (error, results) => {
+    if (error) {
+      console.log(error);
+      res.status(500).json({ error: "Error while updating post" });
+    } else {
+      console.log(results);
+      if (results.rowCount === 1) {
+        res.status(200).json({ message: "Edited post successfully" });
+      } else {
+        res.status(404).json({ error: `Unable to edit post ` });
+      }
+    }
+  });
 });
 
 module.exports = router;
