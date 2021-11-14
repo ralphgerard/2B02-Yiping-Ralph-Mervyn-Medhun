@@ -29,4 +29,17 @@ router.post("/createpost", (req, res) => {
   );
 });
 
+router.delete("/deletepost/:postid", function (req, res, next) {
+  const postid = req.params.postid;
+  connection
+    .query(`DELETE FROM posts WHERE postid = $1`, [postid])
+    .then(function (result) {
+      res.status(200).json({ message: "Successfully deleted" });
+    })
+    .catch(function (error) {
+      console.log(error);
+      return next(error);
+    });
+});
+
 module.exports = router;
