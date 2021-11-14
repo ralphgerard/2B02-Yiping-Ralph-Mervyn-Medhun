@@ -49,7 +49,8 @@ router.put("/editPost/:postid", (req, res) => {
   const updatePostQuery = `
       UPDATE posts
       SET post_title = $1, 
-      post_content = $2
+      post_content = $2, 
+      last_updated_date = NOW() at time zone 'SGT'
       WHERE postid = $3;
       `;
 
