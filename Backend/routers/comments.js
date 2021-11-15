@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const connection = require("../database.js");
-
+var cors = require('cors');
+router.use(cors());
 module.exports = router;
 
 // Create Comment
@@ -25,4 +26,18 @@ router.post('/createComment', (req, res) => {
             }
         }
     });
+});
+
+// Delete Comment
+router.delete("/deleteComment/:commentid", function (req, res, next) {
+    const commentid = req.params.commentid;
+    connection
+        .query(`DELETE FROM comments WHERE commentid = $1`, [commentid])
+        .then(function (result) {
+            res.status(200).json({ message: "Successfully deleted comment" });
+        })
+        .catch(function (error) {
+            console.log(error);
+            return next(error);
+        });
 });
