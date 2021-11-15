@@ -20,6 +20,6 @@ app.use('/api', ApiRouter);
 // TODO: Error Handler
 
 // Listen to port 
-app.listen(process.env.PORT || 3000, function onListen() {
-  console.log("Listning to port " + process.env.PORT || 3000)
+app.listen(process.env.PORT || 8000, function onListen() {
+  console.log("Listning to port " + process.env.PORT || 8000)
  });
