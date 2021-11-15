@@ -2,20 +2,25 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <title>7 Steps</title>
+    <title>Reddit clone</title>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 
     <script>
+      var url = "http://localhost:8000/api";
       $(document).ready(function () {
         $("#post").click(function () {
           var postTitle = $("#title").val();
           var postContent = $("#content").val();
           var userid = $("userid").val();
-          const obj = { post_title: postTitle, post_content: postContent, userid: userid };
+          const obj = {
+            post_title: postTitle,
+            post_content: postContent,
+            userid: userid,
+          };
           const data = JSON.stringify(obj);
           $.ajax({
-            url: "http://localhost:3000/api/post/createpost",
+            url: url + "/post/createpost",
             type: "POST",
             data: data,
             contentType: "application/json; charset=utf-8",
@@ -43,7 +48,5 @@
       <input type="text" id="userid" name="email" /><br /><br />
       <input type="submit" id="post" value="Post" />
     </form>
-
-
   </body>
 </html>
