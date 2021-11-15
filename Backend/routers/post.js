@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const connection = require("../database.js");
-
+var cors = require('cors');
+router.use(cors());
 router.post("/createpost", (req, res) => {
   var post_title = req.body.post_title;
   var post_content = req.body.post_content;
@@ -29,6 +30,9 @@ router.post("/createpost", (req, res) => {
   );
 });
 
+
+
+
 router.delete("/deletepost/:postid", function (req, res, next) {
   const postid = req.params.postid;
   connection
@@ -41,6 +45,8 @@ router.delete("/deletepost/:postid", function (req, res, next) {
       return next(error);
     });
 });
+
+
 
 router.put("/editPost/:postid", (req, res) => {
   var postid = req.params.postid;

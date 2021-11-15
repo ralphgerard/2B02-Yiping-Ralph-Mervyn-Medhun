@@ -5,7 +5,8 @@ const likeableRouter = require("./likeable");
 const likesRouter = require("./likes");
 const postsRouter = require("./post");
 const usersRouter = require("./comments");
-
+var cors = require('cors');
+router.use(cors());
 
 router.use("/comments", commentsRouter);
 router.use("/communities", communitiesRouter);
